@@ -1,0 +1,43 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="author" content="DBLobster" />
+        <meta name="copyright" content="Copyright (C) 2016 GreyPort Team" />
+
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="/javascript/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/javascript/bootstrap/css/bootstrap-theme.min.css">
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/javascript/jquery/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="/javascript/bootstrap/js/bootstrap.min.js"></script>
+
+        <!--<link rel="shortcut icon" href="{% static 'base/img/favicon.ico' %}" />-->
+
+        {% block extrastyle %}{% endblock %}
+        {% block extrahead %}{% endblock %}
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="header" id="header">
+                <div id="header-img"><img src="/logo.png" alt="logo" /></div>
+                {% block header %}{% endblock %}
+            </div>
+            <div class="content" id="content">
+                <h3>{% block content_title %}{% endblock %}</h3>
+                {% block content %}{% endblock %}
+            </div>
+            <div id="footer">
+                {% block footer %}{% endblock %}
+                <div class="text-info"><p>Copyright &copy; 2016 GreyPort Team</p></div>
+            </div>
+        </div>
+    </body>
+</html>

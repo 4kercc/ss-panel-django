@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_safe
 from django.db.models import Sum
 
-from models import In, Out
+from .models import In, Out
 
 
 @require_safe

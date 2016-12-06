@@ -1,9 +1,9 @@
+from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_safe
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import logout
-from django.urls import reverse
 
 from .models import In, Out
 

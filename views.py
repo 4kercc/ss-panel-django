@@ -8,7 +8,7 @@ from django.contrib.auth.views import logout
 from .models import In, Out
 
 
-login_url = reverse('panel:login')
+login_url = 'panel:login'
 
 @require_safe
 def index_main(request):

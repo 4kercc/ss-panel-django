@@ -27,7 +27,7 @@ def index_main(request):
         c = {
             'title': '首页',
             'info': '欢迎光临, 请登录.',
-            'link_url': 'auth:index',
+            'link_url': 'auth:login',
             'link_text': '登录',
         }
         return render(request, 'panel/info.html', c)

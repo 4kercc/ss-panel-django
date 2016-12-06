@@ -15,6 +15,7 @@
             <td>备注</td>
         </th>
         {% for gold in gold_list %}
+        <tr>
             <td>{{ gold.id }}</td>
             <td>{{ gold.date }}</td>
             <td>
@@ -28,6 +29,7 @@
             </td>
             <td>{{ gold.num }}</td>
             <td>{{ gold.memo }}</td>
+        </tr>
         {% endfor %}
     </table>
     <p>合计: {{ gold_sum }}元</p>

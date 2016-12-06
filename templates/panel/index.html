@@ -4,8 +4,13 @@
 
 {% block content_title %}{{ title }}{% endblock %}
 
+{% block header %}
+<div id="header-logout"><a href="/admin/logout/"></a></div>
+<div id="header-password"><a href="/admin/password_change/"></a></div>
+{% endblock %}
+
 {% block content %}
 <div id="panel">
-<p>Shadowsocks</p>
+<p>欢迎 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>.</p>
 </div>
 {% endblock %}

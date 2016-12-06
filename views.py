@@ -18,16 +18,20 @@ def index_main(request):
     url(r'^$', panel.views.index_main),
 
     """
-    c = {
-        'title': '首页',
-    }
-    return render(request, 'panel/index_main.html', c)
+    if request.user.is_authenticated():
+        return redirect('index')
+    else:
+        c = {
+            'title': '首页',
+        }
+        return render(request, 'panel/index_main.html', c)
 
 
 @require_safe
 def index(request):
     c = {
         'title': '首页',
+        'user': request.user,
     }
     return render(request, 'panel/index.html', c)
 

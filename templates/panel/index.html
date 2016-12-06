@@ -9,10 +9,10 @@
 {% block content %}
 <div id="panel">
     <p>欢迎 <span title="{{ user.first_name }}{{ user.last_name }}">{{ user.username }}</span>.</p>
-    <p>您的服务端口: {{ panel.port }}, 服务密码: {{ panel.password }}.</p>
-    <p>状态: {{ panel.status }}.</p>
-    <p>服务起始日期: {{ panel.setup_date }}.</p>
-    <p>服务终止日期: {{ panel.end_date }}.</p>
-    <p>备注: {{ panel.memo }}.</p>
+    <p>您的服务端口: {{ panel.port }}, 服务密码: {{ panel.password }}</p>
+    <p>状态: {{ panel.status }}</p>
+    <p>服务起始日期: {{ panel.setup_date }}</p>
+    <p>服务终止日期: {{ panel.end_date }}</p>
+    <p>备注: {{ panel.memo }}</p>
 </div>
 {% endblock %}

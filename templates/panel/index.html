@@ -4,12 +4,7 @@
 
 {% block content_title %}{{ title }}{% endblock %}
 
-{% block header %}
-<p>
-    <a class="btn btn-default" href="/admin/logout/" role="button">安全退出</a>
-    <a class="btn btn-default" href="/admin/password_change/" role="button">修改密码</a>
-</p>
-{% endblock %}
+{% block header %}{% include 'panel/snippet_logined_header.html'%}{% endblock %}
 
 {% block content %}
 <div id="panel">

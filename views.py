@@ -38,7 +38,7 @@ def enter(request):
     """login"""
     c = {
         'authentication_form': AdminAuthenticationForm,
-        'template_name': login_url,
+        'template_name': 'admin/login.html',
     }
     return login(request, **c)
 

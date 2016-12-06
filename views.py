@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_safe
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import logout
 
 from .models import In, Out
 
@@ -28,6 +29,18 @@ def index_main(request):
             'title': '首页',
         }
         return render(request, 'panel/index_main.html', c)
+
+
+@require_safe
+def quit(request):
+    logout(request)
+    c = {
+        'title': '退出成功',
+        'info': '感谢您的使用, 再见.',
+        'link_url': 'panel:index',
+        'link_text': '重新登录',
+    }
+    return render(request, 'panel/info.html', c)
 
 
 @require_safe

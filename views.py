@@ -40,11 +40,11 @@ def quit(request):
 @login_required
 def index(request):
     user = request.user
-    user_panel = user.panel
+    panel = user.user # panel.models.User
     c = {
         'title': '首页',
         'user': user,
-        'panel': user_panel,
+        'panel': panel,
     }
     return render(request, 'panel/index.html', c)
 

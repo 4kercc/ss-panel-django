@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.forms import AdminAuthenticationForm
 
 from .models import In, Out
+from .decorators import superuser_required
 
 
 @require_safe
@@ -36,6 +37,17 @@ def quit(request):
     return render(request, 'panel/info.html', c)
 
 
+def not_superuser(request):
+    """logout"""
+    c = {
+        'title': '没有使用权',
+        'info': '您没有使用此功能的权利, 请返回主页.',
+        'link_url': 'panel:index',
+        'link_text': '返回主页',
+    }
+    return render(request, 'panel/info.html', c)
+
+
 @require_safe
 @login_required
 def index(request):
@@ -52,17 +64,22 @@ def index(request):
 @require_safe
 @login_required
 def status(request):
-    """统计服务器状态, 属于管理页面."""
-    c = {
-        'title': '服务器状态',
-    }
-    return render(request, 'panel/status.html', c)
+    """统计服务器状态."""
+    user = request.user
+    if user.is_superuser:
+        c = {
+            'title': '服务器状态',
+        }
+        return render(request, 'panel/status.html', c)
+    else:
+        return not_superuser(request)
 
 
 @require_safe
 @login_required
+@superuser_required
 def gold(request):
-    """统计资金收支状态, 属于管理页面."""
+    """统计资金收支状态."""
     gold_in = In.objects.all().aggregate(Sum('num'))['num__sum']
     gold_out = Out.objects.all().aggregate(Sum('num'))['num__sum']
     gold_sum = gold_in + gold_out
@@ -78,8 +95,9 @@ def gold(request):
 
 @require_safe
 @login_required
+@superuser_required
 def gold_method(request, method):
-    """统计资金收支明细, 属于管理页面."""
+    """统计资金收支明细."""
     title = ''
     gold_sum = 0.0
     gold_list = []

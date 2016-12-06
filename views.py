@@ -9,13 +9,13 @@ from .models import In, Out
 def index_main(request):
     """可以将此页加为主站点的首页.
 
-    可以将一下语句加入工程的 urls.py:
+    可以将以下语句加入工程的 urls.py:
 
-    from panel import views
+    import panel.views
 
     urlpatterns 内添加:
 
-    url(r'^$', views.index_main),
+    url(r'^$', panel.views.index_main),
 
     """
     c = {

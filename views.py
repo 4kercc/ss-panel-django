@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_safe
 from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
 
 from .models import In, Out
 
+
+login_url = '/admin/login/'
 
 @require_safe
 def index_main(request):
@@ -28,6 +31,7 @@ def index_main(request):
 
 
 @require_safe
+@login_required(login_url=login_url)
 def index(request):
     c = {
         'title': '首页',
@@ -37,6 +41,7 @@ def index(request):
 
 
 @require_safe
+@login_required(login_url=login_url)
 def status(request):
     """统计服务器状态, 属于管理页面."""
     c = {
@@ -46,6 +51,7 @@ def status(request):
 
 
 @require_safe
+@login_required(login_url=login_url)
 def gold(request):
     """统计资金收支状态, 属于管理页面."""
     gold_in = In.objects.all().aggregate(Sum('num'))['num__sum']
@@ -62,6 +68,7 @@ def gold(request):
 
 
 @require_safe
+@login_required(login_url=login_url)
 def gold_method(request, method):
     """统计资金收支明细, 属于管理页面."""
     title = ''

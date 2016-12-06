@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_safe
 from django.db.models import Sum
 from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.auth.views import logout
+from django.contrib.auth.views import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.forms import AdminAuthenticationForm
 

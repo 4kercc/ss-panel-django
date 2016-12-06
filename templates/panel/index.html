@@ -5,12 +5,14 @@
 {% block content_title %}{{ title }}{% endblock %}
 
 {% block header %}
-<div id="header-logout"><a href="/admin/logout/">安全退出</a></div>
-<div id="header-password"><a href="/admin/password_change/">修改密码</a></div>
+<p>
+    <a class="btn btn-default" href="/admin/logout/" role="button">安全退出</a>
+    <a class="btn btn-default" href="/admin/password_change/" role="button">修改密码</a>
+</p>
 {% endblock %}
 
 {% block content %}
 <div id="panel">
-<p>欢迎 <span title="{{ user.first_name }}{{ user.last_name }}">{{ user.username }}</span>.</p>
+    <p>欢迎 <span title="{{ user.first_name }}{{ user.last_name }}">{{ user.username }}</span>.</p>
 </div>
 {% endblock %}

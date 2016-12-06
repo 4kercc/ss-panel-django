@@ -50,7 +50,7 @@ def gold_method(request, method):
         gold_sum = In.objects.all().aggregate(Sum('num'))['num__sum']
         gold_list = In.objects.all().order_by('-date')
     elif method == 'out':
-        title = '收入明细'
+        title = '支出明细'
         gold_sum = Out.objects.all().aggregate(Sum('num'))['num__sum']
         gold_list = Out.objects.all().order_by('-date')
 

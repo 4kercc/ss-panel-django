@@ -6,6 +6,7 @@ import panel.urls
 
 urlpatterns 内添加:
 
+url(r'^accounts/', include('django.contrib.auth.urls', namespace='auth')),
 url(r'^panel/', include(panel.urls, namespace='panel')),
 """
 
@@ -15,6 +16,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+
+    url(r'^logout/$', views.quit),
 
     url(r'^status/$', views.status),
     url(r'^gold/$', views.gold),

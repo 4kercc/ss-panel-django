@@ -19,18 +19,8 @@ def index_main(request):
     urlpatterns 内添加:
 
     url(r'^$', panel.views.index_main),
-    url(r'^accounts/', include('django.contrib.auth.urls', namespace='auth')),
     """
-    if request.user.is_authenticated():
-        return redirect('panel:index')
-    else:
-        c = {
-            'title': '首页',
-            'info': '欢迎光临, 请登录.',
-            'link_url': 'auth:login',
-            'link_text': '登录',
-        }
-        return render(request, 'panel/info.html', c)
+    return redirect('panel:index')
 
 
 @require_safe

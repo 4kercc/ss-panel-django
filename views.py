@@ -36,12 +36,9 @@ def index_main(request):
 @require_safe
 def enter(request):
     """login"""
-    if (REDIRECT_FIELD_NAME not in request.GET and REDIRECT_FIELD_NAME not in request.POST):
-        context[REDIRECT_FIELD_NAME] = request.get_full_path()
     c = {
         'authentication_form': AdminAuthenticationForm,
         'template_name': login_url,
-        'extra_context': context,
     }
     return login(request, **c)
 

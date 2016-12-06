@@ -16,9 +16,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
 
-    url(r'^login/$', views.enter, name='login'),
-    url(r'^logout/$', views.quit, name='logout'),
-
     url(r'^status/$', views.status),
     url(r'^gold/$', views.gold),
     url(r'^gold/(?P<method>\w+)/$', views.gold_method),

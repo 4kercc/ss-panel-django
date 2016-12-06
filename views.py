@@ -1,15 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_safe
 from django.db.models import Sum
-from django.contrib.auth import REDIRECT_FIELD_NAME
-from django.contrib.auth.views import login, logout
+from django.contrib.auth.views import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.forms import AdminAuthenticationForm
 
 from .models import In, Out
 
-
-login_url = 'panel:login'
 
 @require_safe
 def index_main(request):
@@ -22,25 +19,18 @@ def index_main(request):
     urlpatterns 内添加:
 
     url(r'^$', panel.views.index_main),
-
+    url(r'^accounts/', include('django.contrib.auth.urls', namespace='auth')),
     """
     if request.user.is_authenticated():
         return redirect('panel:index')
     else:
         c = {
             'title': '首页',
+            'info': '欢迎光临, 请登录.',
+            'link_url': 'auth:index',
+            'link_text': '登录',
         }
-        return render(request, 'panel/index_main.html', c)
-
-
-@require_safe
-def enter(request):
-    """login"""
-    c = {
-        'authentication_form': AdminAuthenticationForm,
-        'template_name': 'admin/login.html',
-    }
-    return login(request, **c)
+        return render(request, 'panel/info.html', c)
 
 
 @require_safe
@@ -57,7 +47,7 @@ def quit(request):
 
 
 @require_safe
-@login_required(login_url=login_url)
+@login_required
 def index(request):
     c = {
         'title': '首页',
@@ -67,7 +57,7 @@ def index(request):
 
 
 @require_safe
-@login_required(login_url=login_url)
+@login_required
 def status(request):
     """统计服务器状态, 属于管理页面."""
     c = {
@@ -77,7 +67,7 @@ def status(request):
 
 
 @require_safe
-@login_required(login_url=login_url)
+@login_required
 def gold(request):
     """统计资金收支状态, 属于管理页面."""
     gold_in = In.objects.all().aggregate(Sum('num'))['num__sum']
@@ -94,7 +84,7 @@ def gold(request):
 
 
 @require_safe
-@login_required(login_url=login_url)
+@login_required
 def gold_method(request, method):
     """统计资金收支明细, 属于管理页面."""
     title = ''

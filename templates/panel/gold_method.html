@@ -1,0 +1,35 @@
+{% extends 'panel/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content_title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div id="panel">
+    <table>
+        <th>
+            <td>ID</td>
+            <td>日期</td>
+            <td>信息</td>
+            <td>金额</td>
+            <td>备注</td>
+        </th>
+        {% for gold in gold_list %}
+            <td>{{ gold.id }}</td>
+            <td>{{ gold.date }}</td>
+            <td>
+                {% if method == "in" %}
+                    {{ gold.user }}
+                {% elif method == "out" %}
+                    {{ gold.log }}
+                {% else %}
+                    未定义
+                {% endif %}
+            </td>
+            <td>{{ gold.num }}</td>
+            <td>{{ gold.memo }}</td>
+        {% endfor %}
+    </table>
+    <p>合计: {{ gold_sum }}元</p>
+</div>
+{% endblock %}

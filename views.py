@@ -22,7 +22,7 @@ def index_main(request):
 
     """
     if request.user.is_authenticated():
-        return redirect('index')
+        return redirect('panel:index')
     else:
         c = {
             'title': '首页',

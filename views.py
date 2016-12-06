@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.views.decorators.http import require_safe
 from django.db.models import Sum
 from django.contrib.auth.views import logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.admin.forms import AdminAuthenticationForm
+
+from django.views.decorators.http import require_safe
+from django.contrib.auth.decorators import login_required
 
 from .models import In, Out
 from .decorators import superuser_required
@@ -37,17 +38,6 @@ def quit(request):
     return render(request, 'panel/info.html', c)
 
 
-def not_superuser(request):
-    """logout"""
-    c = {
-        'title': '没有使用权',
-        'info': '您没有使用此功能的权利, 请返回主页.',
-        'link_url': 'panel:index',
-        'link_text': '返回主页',
-    }
-    return render(request, 'panel/info.html', c)
-
-
 @require_safe
 @login_required
 def index(request):
@@ -63,16 +53,13 @@ def index(request):
 
 @require_safe
 @login_required
+@superuser_required
 def status(request):
     """统计服务器状态."""
-    user = request.user
-    if user.is_superuser:
-        c = {
-            'title': '服务器状态',
-        }
-        return render(request, 'panel/status.html', c)
-    else:
-        return not_superuser(request)
+    c = {
+        'title': '服务器状态',
+    }
+    return render(request, 'panel/status.html', c)
 
 
 @require_safe

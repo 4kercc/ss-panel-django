@@ -25,8 +25,8 @@ def status(request):
 @require_safe
 def gold(request):
     """统计资金收支状态, 属于管理页面."""
-    gold_in = In.objects.all().aggregate(Sum('num'))
-    gold_out = Out.objects.all().aggregate(Sum('num'))
+    gold_in = In.objects.all().aggregate(Sum('num')).num__sum
+    gold_out = Out.objects.all().aggregate(Sum('num')).num__sum
     gold_sum = gold_in + gold_out
     c = {
         'title': '资金状态',

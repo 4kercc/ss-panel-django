@@ -39,9 +39,12 @@ def quit(request):
 @require_safe
 @login_required
 def index(request):
+    user = request.user
+    user_panel = user.panel
     c = {
         'title': '首页',
-        'user': request.user,
+        'user': user,
+        'panel': user_panel,
     }
     return render(request, 'panel/index.html', c)
 

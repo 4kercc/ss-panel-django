@@ -6,6 +6,25 @@ from .models import In, Out
 
 
 @require_safe
+def index_main(request):
+    """可以将此页加为主站点的首页.
+
+    可以将一下语句加入工程的 urls.py:
+
+    from panel import views
+
+    urlpatterns 内添加:
+
+    url(r'^$', views.index_main),
+
+    """
+    c = {
+        'title': '首页',
+    }
+    return render(request, 'panel/index_main.html', c)
+
+
+@require_safe
 def index(request):
     c = {
         'title': '首页',

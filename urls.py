@@ -6,7 +6,7 @@ import panel.urls
 
 urlpatterns 内添加:
 
-url(r'^panel/', include(panel.urls), namespace='panel'),
+url(r'^panel/', include(panel.urls, namespace='panel')),
 """
 
 from django.conf.urls import url

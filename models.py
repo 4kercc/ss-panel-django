@@ -17,7 +17,7 @@ class User(models.Model):
     class Meta:
         verbose_name = '用户'
         verbose_name_plural = verbose_name
-        ordering = ['setup_date',]
+        ordering = ['port',]
 
 
 class Flow(models.Model):
@@ -46,7 +46,7 @@ class In(models.Model):
     class Meta:
         verbose_name = '收入'
         verbose_name_plural = verbose_name
-        ordering = ['date',]
+        ordering = ['-date',]
 
 
 class Out(models.Model):
@@ -61,4 +61,4 @@ class Out(models.Model):
     class Meta:
         verbose_name = '支出'
         verbose_name_plural = verbose_name
-        ordering = ['date',]
+        ordering = ['-date',]

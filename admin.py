@@ -4,7 +4,7 @@ from .models import User, Flow, In, Out
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'status', 'port', 'password', 'setup_date', 'end_date')
+    list_display = ('id', 'user', 'status', 'port', 'password', 'end_date', 'setup_date', 'memo')
     list_display_links = ('user',)
     list_filter = ('status',)
 

@@ -55,4 +55,4 @@ def remove(server_port):
 
 # 直接运行显示当前服务器流量
 if __name__ == '__main__':
-    print(ping)
+    print(ping())

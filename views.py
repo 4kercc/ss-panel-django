@@ -6,7 +6,7 @@ from django.views.decorators.http import require_safe
 from django.contrib.auth.decorators import login_required
 
 from .ss import ping
-from .models import In, Out
+from .models import User, Flow, In, Out
 from .decorators import superuser_required
 
 
@@ -62,6 +62,18 @@ def status(request):
         'flow': flow,
     }
     return render(request, 'panel/status.html', c)
+
+
+@require_safe
+@login_required
+@superuser_required
+def users(request):
+    """User list."""
+    users = User.objects.all()
+    c = {
+        'title': 'User List',
+    }
+    return render(request, 'panel/users.html', c)
 
 
 @require_safe

@@ -27,7 +27,7 @@ def send(op):
 
 
 def ping():
-    msg = send(b'ping') # You'll receive 'pong'
+    msg = send('ping') # You'll receive 'pong'
     return msg.split()[1] # JSON
 
 

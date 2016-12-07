@@ -5,7 +5,7 @@ from django.contrib.auth.views import logout
 from django.views.decorators.http import require_safe
 from django.contrib.auth.decorators import login_required
 
-import ss
+from .ss import ping
 from .models import In, Out
 from .decorators import superuser_required
 
@@ -56,7 +56,7 @@ def index(request):
 @superuser_required
 def status(request):
     """统计服务器状态."""
-    flow = ss.ping()
+    flow = ping()
     c = {
         'title': '服务器状态',
         'flow': flow,

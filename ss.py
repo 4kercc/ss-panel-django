@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-import os, socket, random
+import os, socket, random, json
 
 
 socket_server = '/var/run/shadowsocks-manager.sock' # address of Shadowsocks manager
@@ -26,14 +26,14 @@ def send(op):
     return msg
 
 
-def ping(json=False):
+def ping(src=False):
     msg = send('ping') # You'll receive 'pong'
     j = msg.split()[1] # JSON
 
-    if json:
+    if src: # 返回原始 JSON
         return j
     else:
-        return j.loads(json)
+        return json.loads(j)
 
 
 def add(server_port, password):

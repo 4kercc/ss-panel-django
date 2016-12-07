@@ -26,9 +26,14 @@ def send(op):
     return msg
 
 
-def ping():
+def ping(json=False):
     msg = send('ping') # You'll receive 'pong'
-    return msg.split()[1] # JSON
+    j = msg.split()[1] # JSON
+
+    if json:
+        return j
+    else:
+        return j.loads(json)
 
 
 def add(server_port, password):

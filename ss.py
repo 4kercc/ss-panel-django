@@ -3,25 +3,18 @@
 import os, socket, random, json
 
 
-socket_server = '/var/run/shadowsocks-manager.sock' # address of Shadowsocks manager
+socket_server = ('127.0.0.1', 50001) # address of Shadowsocks manager
 bufsize = 1024 * 8
 
 
 def send(op):
-    socket_client = '/tmp/ss-client.sock.' + str(random.randrange(100000000)) # address of the client
-
-    if os.path.isfile(socket_client):
-        os.unlink(socket_client)
-
-    cli = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-    cli.bind(socket_client)
+    cli = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     cli.connect(socket_server)
 
     cli.send(op.encode())
     msg = cli.recv(bufsize).decode() # 收到的数据应当是 ASCII 编码.
 
     cli.close()
-    os.unlink(socket_client)
 
     return msg
 

@@ -17,7 +17,7 @@ def send(op):
     cli.bind(socket_client)
     cli.connect(socket_server)
 
-    cli.send(op.())
+    cli.send(op.encode())
     msg = cli.recv(bufsize).decode() # 收到的数据应当是 ASCII 编码.
 
     cli.close()

@@ -28,6 +28,7 @@
         <div class="container" id="container">
             <div class="header" id="header">
                 <div id="header-text">控制面板</div>
+                {% include 'panel/snippet_logined_header.html'%}
                 {% block header %}{% endblock %}
             </div>
             <div class="content" id="content">
@@ -36,6 +37,7 @@
             </div>
             <div class="footer" id="footer">
                 {% block footer %}{% endblock %}
+                {% include 'panel/snippet_logined_footer.html'%}
                 <div class="text-info"><p>Copyright &copy; 2016 GreyPort Team, All rights reserved.</p></div>
             </div>
         </div>

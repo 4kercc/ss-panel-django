@@ -4,8 +4,6 @@
 
 {% block content_title %}{{ title }}{% endblock %}
 
-{% block header %}{% include 'panel/snippet_logined_header.html'%}{% endblock %}
-
 {% block content %}
 <div id="panel">
     <p>欢迎 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>.</p>

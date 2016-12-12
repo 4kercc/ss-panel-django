@@ -70,9 +70,11 @@ def status(request):
 def users(request):
     """User list."""
     users = User.objects.all()
+    user_header = [f.name for f in User._meta.get_fields()]
     c = {
         'title': 'User List',
         'users': users,
+        'user_header': user_header;
     }
     return render(request, 'panel/users.html', c)
 

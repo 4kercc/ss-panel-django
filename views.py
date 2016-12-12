@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Sum
 from django.contrib.auth.views import logout
+from django.contrib.auth.models import User as UserAuth
 
 from django.views.decorators.http import require_safe
 from django.contrib.auth.decorators import login_required
@@ -76,6 +77,9 @@ def users(request):
     user_status = []
     user_list = [item for item in users]
     for u in user_list:
+        # user is fk, lost in dict.
+        u['user'] = UserAuth.objects.get(id=u['user_id'])
+
         if str(u['port']) in flow.keys():
             u['online'] = True
             # 转换为 MB 和 GB
@@ -88,11 +92,13 @@ def users(request):
         else:
             u['online'] = False
             u['flow'] = '0.0000 MB'
+
         user_status.append(u)
 
     c = {
         'title': 'User List',
         'users': user_status,
+        'user_list': user_list,
     }
     return render(request, 'panel/users.html', c)
 

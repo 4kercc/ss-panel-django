@@ -154,8 +154,9 @@ def gold_method(request, method):
 def ss_op_admin(request):
     """管理员操作用户的 Shadowsocks 端口."""
     username = request.POST['username']
-    port = request.POST['port']
-    password = request.POST['password']
+    user = UserAuth.objects.get(username=username).user
+    port = user.port
+    password = user.password
     op = request.POST['op']
     flow = ping()
 

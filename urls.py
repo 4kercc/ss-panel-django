@@ -19,8 +19,8 @@ urlpatterns = [
 
     url(r'^logout/$', views.quit, name='logout'),
 
-    url(r'^status/$', views.status, name='status'),
     url(r'^users/$', views.users, name='users'),
+    url(r'^status/$', views.status, name='status'),
     url(r'^gold/$', views.gold, name='gold'),
     url(r'^gold/(?P<method>\w+)/$', views.gold_method),
 ]

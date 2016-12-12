@@ -78,10 +78,16 @@ def users(request):
     for u in user_list:
         if str(u['port']) in flow.keys():
             u['online'] = True
-            u['flow'] = flow[str(u['port'])] / 1024 / 1024
+            # 转换为 MB 和 GB
+            flow_readable = flow[str(u['port'])] / 1024 / 1024
+            if flow_readable > 1024:
+                flow_srt = '%.4f GB' % (flow_readable / 1024)
+            else:
+                flow_srt = '%.4f MB' % flow_readable
+            u['flow'] = flow_srt
         else:
             u['online'] = False
-            u['flow'] = 0
+            u['flow'] = '0.0000 MB'
         user_status.append(u)
 
     c = {

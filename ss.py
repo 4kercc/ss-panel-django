@@ -56,11 +56,9 @@ def close_port(server_port):
 
 def reopen_port(server_port, password):
     r = False
-    msg = close_port(server_port)
-    msg = open_port(server_port, password)
+    r = close_port(server_port)
+    r = open_port(server_port, password)
 
-    if msg == 'ok':
-        r = True
     print('reopen_port %s: %s' % (server_port, r))
     return r
 

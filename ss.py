@@ -11,8 +11,11 @@ def send(op):
     cli = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     cli.connect(socket_server)
 
+    print('SS 操作命令: %s' % op)
+
     cli.send(op.encode())
     msg = cli.recv(bufsize).decode() # 收到的数据应当是 ASCII 编码.
+    print('SS: 操作结果: %s' % msg)
 
     cli.close()
 

@@ -15,7 +15,7 @@ def send(op):
 
     cli.send(op.encode())
     msg = cli.recv(bufsize).decode() # 收到的数据应当是 ASCII 编码.
-    print('SS: RST: %s' % msg)
+    print('SS RST: %s' % msg)
 
     cli.close()
 

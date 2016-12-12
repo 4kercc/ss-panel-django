@@ -76,11 +76,11 @@ def users(request):
     user_status = []
     user_list = [item for item in users]
     for u in user_list:
-        if u['port'] in flow.keys():
+        if str(u['port']) in flow.keys():
             u['online'] = True
-            u['flow'] = flow[u['port']] / 1024 / 1024
+            u['flow'] = flow[str(u['port'])] / 1024 / 1024
         else:
-            u['online'] = True
+            u['online'] = False
             u['flow'] = 0
         user_status.append(u)
 

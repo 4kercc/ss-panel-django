@@ -96,7 +96,7 @@ def users(request):
         user_status.append(u)
 
     c = {
-        'title': 'User List',
+        'title': '用户列表',
         'users': user_status,
         'user_list': user_list,
     }

@@ -3,10 +3,10 @@ from django.db.models import Sum
 from django.contrib.auth.views import logout
 from django.contrib.auth.models import User as UserAuth
 
-from django.views.decorators.http import require_safe
+from django.views.decorators.http import require_safe, require_POST
 from django.contrib.auth.decorators import login_required
 
-from .ss import ping
+from .ss import ping, open_port, close_port, reopen_port
 from .models import User, Flow, In, Out
 from .decorators import superuser_required
 
@@ -146,3 +146,67 @@ def gold_method(request, method):
         'method': method,
     }
     return render(request, 'panel/gold_method.html', c)
+
+
+@require_POST
+@login_required
+@superuser_required
+def ss_op_admin(request):
+    """管理员操作用户的 Shadowsocks 端口."""
+    username = request.POST['username']
+    port = request.POST['port']
+    password = request.POST['password']
+    op = request.POST['op']
+    flow = ping()
+
+    port_opened = str(port) in flow.keys()
+
+    r = False
+
+    if op == 'open_port':
+        op_str = '打开端口'
+        if port_opened:
+            r = True
+        else:
+            r = open_port(port, password)
+    elif op == 'reopen_port':
+        op_str = '重启端口'
+        if port_opened:
+            r = reopen_port(port, password)
+        else:
+            r = open_port(port, password)
+    elif op == 'close_port':
+        op_str = '关闭端口'
+        if port_opened:
+            r = close_port(port)
+        else:
+            r = True
+    else:
+        op_str = '未知的(%s)' % op
+
+    if r:
+        r_str = '成功'
+    else:
+        r_str = '失败'
+
+    c = {
+        'title': '操作结果',
+        'info': '对 %s 的 %s 操作, 执行结果: %s.' % (username, op_str, r_str),
+        'link_url': 'panel:users',
+        'link_text': '查看用户列表',
+    }
+    return render(request, 'panel/info.html', c)
+
+
+@require_POST
+@login_required
+def ss_op(request):
+    """用户操作自己的 Shadowsocks 端口."""
+
+    c = {
+        'title': '操作结果',
+        'info': '%s 操作, 执行结果: %s.' % (op_str, r_str),
+        'link_url': 'panel:index',
+        'link_text': '返回首页',
+    }
+    return render(request, 'panel/info.html', c)

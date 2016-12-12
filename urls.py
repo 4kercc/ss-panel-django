@@ -16,6 +16,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^ss-op/$', views.ss_op, name='ss-op'),
 
     url(r'^logout/$', views.quit, name='logout'),
 
@@ -23,4 +24,6 @@ urlpatterns = [
     url(r'^status/$', views.status, name='status'),
     url(r'^gold/$', views.gold, name='gold'),
     url(r'^gold/(?P<method>\w+)/$', views.gold_method),
+
+    url(r'^ss-op-admin/$', views.ss_op_admin, name='ss-op-admin'),
 ]

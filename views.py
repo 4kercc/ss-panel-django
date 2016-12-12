@@ -58,9 +58,19 @@ def index(request):
 def status(request):
     """统计服务器状态."""
     flow = ping()
+    flows_srt = {}
+
+    for k, v in flow:
+        flow_readable = v / 1024 / 1024
+        if flow_readable > 1024:
+            flow_srt = '%.3f GB' % (flow_readable / 1024)
+        else:
+            flow_srt = '%.3f MB' % flow_readable
+        flows_srt[k] = flow_srt
+
     c = {
         'title': '服务器状态',
-        'flow': flow,
+        'flow': flows_srt,
     }
     return render(request, 'panel/status.html', c)
 

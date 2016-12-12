@@ -74,7 +74,7 @@ def users(request):
     c = {
         'title': 'User List',
         'users': users,
-        'user_header': user_header;
+        'user_header': user_header,
     }
     return render(request, 'panel/users.html', c)
 

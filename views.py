@@ -60,7 +60,7 @@ def status(request):
     flow = ping()
     flows_srt = {}
 
-    for k, v in flow.items:
+    for k, v in flow.items():
         flow_readable = v / 1024 / 1024
         if flow_readable > 1024:
             flow_srt = '%.3f GB' % (flow_readable / 1024)

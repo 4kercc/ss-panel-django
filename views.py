@@ -69,12 +69,24 @@ def status(request):
 @superuser_required
 def users(request):
     """User list."""
-    users = User.objects.all()
-    user_header = [f.name for f in User._meta.get_fields()]
+    users = User.objects.all().values()
+
+    # 向 User 列表中增加端口实时状态和当前流量.
+    flow = ping()
+    user_status = []
+    user_list = [item for item in users]
+    for u in user_list:
+        if u['port'] in flow.keys():
+            u['online'] = True
+            u['flow'] = flow[u['port']] / 1024 / 1024
+        else:
+            u['online'] = True
+            u['flow'] = 0
+        user_status.append(u)
+
     c = {
         'title': 'User List',
-        'users': users,
-        'user_header': user_header,
+        'users': user_status,
     }
     return render(request, 'panel/users.html', c)
 

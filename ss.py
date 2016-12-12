@@ -45,7 +45,7 @@ def open_port(server_port, password):
 
 def close_port(server_port):
     r = False
-    cmd = 'remove: {"server_port": %s"}' % server_port
+    cmd = 'remove: {"server_port": %s}' % server_port
     msg = send(cmd)
 
     if msg == 'ok':

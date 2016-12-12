@@ -72,6 +72,7 @@ def users(request):
     users = User.objects.all()
     c = {
         'title': 'User List',
+        'users': users,
     }
     return render(request, 'panel/users.html', c)
 

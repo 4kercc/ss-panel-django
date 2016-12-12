@@ -11,12 +11,24 @@
     <table class="table table-striped table-bordered table-hover">
         <tr>
             <th>ID</th>
-            <th>User</th>
+            <th>用户</th>
+            <th>状态</th>
+            <th>端口</th>
+            <th>密码</th>
+            <th>建立日期</th>
+            <th>结束日期</th>
+            <th>备注</th>
         </tr>
-        {% for k, v in flow.items %}
+        {% for user in users %}
         <tr>
-            <td>{{ k }}</td>
-            <td>{{ v }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.user }}</td>
+            <td>{{ user.status }}</td>
+            <td>{{ user.port }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.setup_date }}</td>
+            <td>{{ user.end_date }}</td>
+            <td>{{ user.memo }}</td>
         </tr>
         {% endfor %}
     </table>

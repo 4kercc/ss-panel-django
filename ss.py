@@ -29,7 +29,7 @@ def ping(src=False):
         return json.loads(j)
 
 
-def add(server_port, password):
+def open_port(server_port, password):
     r = False
     cmd = 'add: {"server_port": %s, "password": "%s"}' % (server_port, password)
     msg = send(cmd)
@@ -40,10 +40,21 @@ def add(server_port, password):
     return r
 
 
-def remove(server_port):
+def close_port(server_port):
     r = False
     cmd = 'remove: {"server_port": %s"}' % server_port
     msg = send(cmd)
+
+    if msg == 'ok':
+        r = True
+
+    return r
+
+
+def reopen_port(server_port, password):
+    r = False
+    msg = close_port(server_port)
+    msg = open_port(server_port, password)
 
     if msg == 'ok':
         r = True

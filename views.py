@@ -42,11 +42,9 @@ def quit(request):
 @require_safe
 @login_required
 def index(request):
-    user = request.user
-    panel = user.user # panel.models.User
+    panel = request.user.user # panel.models.User
     c = {
         'title': '首页',
-        'user': user,
         'panel': panel,
     }
     return render(request, 'panel/index.html', c)
@@ -164,9 +162,9 @@ def gold_method(request, method):
 def ss_op_admin(request):
     """管理员操作用户的 Shadowsocks 端口."""
     username = request.POST['username']
-    user = UserAuth.objects.get(username=username).user
-    port = user.port
-    password = user.password
+    panel = UserAuth.objects.get(username=username).user
+    port = panel.port
+    password = panel.password
     op = request.POST['op']
     flow = ping()
 

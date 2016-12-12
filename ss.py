@@ -39,7 +39,7 @@ def open_port(server_port, password):
 
     if msg == 'ok':
         r = True
-
+    print('open_port %s: %s' % (server_port, r))
     return r
 
 
@@ -50,7 +50,7 @@ def close_port(server_port):
 
     if msg == 'ok':
         r = True
-
+    print('close_port %s: %s' % (server_port, r))
     return r
 
 
@@ -61,7 +61,7 @@ def reopen_port(server_port, password):
 
     if msg == 'ok':
         r = True
-
+    print('reopen_port %s: %s' % (server_port, r))
     return r
 
 

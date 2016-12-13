@@ -20,7 +20,7 @@
     {% endif %}
 {% endif %}
 
-<form class="form-horizontal" method="post" action="{% url 'auth:login' %}" role="form">
+<form method="post" action="{% url 'auth:login' %}" role="form">
     {% csrf_token %}
     <div class="form-group">
         {{ form.username.label_tag }}

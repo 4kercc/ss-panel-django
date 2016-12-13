@@ -39,10 +39,12 @@
                 </div>
             </div>
         </div>
-        <footer class="footer text-info bg-info" id="footer">
-            {% block footer %}{% endblock %}
-            {% include 'panel/snippet_logined_footer.html'%}
-            <p>Copyright &copy; 2016 GreyPort Team.</p>
+        <footer class="footer" id="footer">
+            <div class="container text-muted">
+                {% block footer %}{% endblock %}
+                {% include 'panel/snippet_logined_footer.html'%}
+                <p>Copyright &copy; 2016 GreyPort Team.</p>
+            </div>
         </footer>
     </body>
 </html>

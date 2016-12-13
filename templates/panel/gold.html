@@ -1,9 +1,7 @@
 {% extends 'panel/base.html' %}
 
 {% block content %}
-<div id="panel">
-    <p>合计: {{ gold_sum }}元</p>
-    <p><a href='in/'>收入: {{ gold_in }}元</a></p>
-    <p><a href='out/'>支出: {{ gold_out }}元</a></p>
-</div>
+<p>合计: {{ gold_sum }}元</p>
+<p><a href='in/'>收入: {{ gold_in }}元</a></p>
+<p><a href='out/'>支出: {{ gold_out }}元</a></p>
 {% endblock %}

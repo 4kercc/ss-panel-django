@@ -37,8 +37,10 @@
             </div>
             <div class="footer" id="footer">
                 {% block footer %}{% endblock %}
-                {% include 'panel/snippet_logined_footer.html'%}
-                <div class="text-info"><p>Copyright &copy; 2016 GreyPort Team, All rights reserved.</p></div>
+                <div class="text-info">
+                    {% include 'panel/snippet_logined_footer.html'%}
+                    <p>Copyright &copy; 2016 GreyPort Team.</p>
+                </div>
             </div>
         </div>
     </body>

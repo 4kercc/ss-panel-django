@@ -17,4 +17,11 @@
     </a>
     {% endfor %}
 </div>
+
+<script>
+$(document).ready(function(){
+    $("#nav-gold").addClass("active");
+    $("#nav-gold-{{ method }}").addClass("active");
+});
+</script>
 {% endblock %}

@@ -2,9 +2,9 @@
 
 {% block title %}控制面板{% endblock %}
 
-{% block content_title %}{{ 控制面板 }}{% endblock %}
+{% block content_title %}控制面板{% endblock %}
 
-{% block panel_title %}{{ 控制面板 }}{% endblock %}
+{% block panel_title %}控制面板{% endblock %}
 
 {% block content %}
 
@@ -20,13 +20,16 @@
     {% endif %}
 {% endif %}
 
-<form class="form-signin" method="post" action="{% url 'auth:login' %}" role="form">
+<form class="form-horizontal" method="post" action="{% url 'auth:login' %}" role="form">
     {% csrf_token %}
-    <h2 class="form-signin-heading">请登录</h2>
-    {{ form.username.label_tag }}
-    {{ form.username }}
-    {{ form.password.label_tag }}
-    {{ form.password }}
+    <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+    </div>
+    <div class="form-group">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+    </div>
     <input type="hidden" name="next" value="{{ next }}" />
     <button class="btn btn-primary" type="submit">登录</button>
 </form>

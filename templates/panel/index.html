@@ -1,11 +1,5 @@
 {% extends 'panel/base.html' %}
 
-{% block title %}{{ title }}{% endblock %}
-
-{% block content_title %}{{ title }}{% endblock %}
-
-{% block panel_title %}{{ title }}{% endblock %}
-
 {% block content %}
 <p>欢迎 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>.</p>
 <p>您的服务端口: {{ panel.port }}, 服务密码: {{ panel.password }}</p>

@@ -8,7 +8,7 @@
         <meta name="author" content="DBLobster" />
         <meta name="copyright" content="Copyright (C) 2016 GreyPort Team" />
 
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}{{ title }}{% endblock %}</title>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="/javascript/bootstrap/css/bootstrap.min.css">
@@ -28,11 +28,11 @@
         {% include 'panel/snippet_nav.html'%}
         <div class="container" id="content">
             <div class="page-header">
-                <h1>{% block content_title %}{% endblock %}</h1>
+                <h1>{% block content_title %}{{ title }}{% endblock %}</h1>
             </div>
             <div class="panel panel-default" id="panel">
                 <div class="panel-heading">
-                    <h2 class="panel-title">{% block panel_title %}{% endblock %}</h2>
+                    <h2 class="panel-title">{% block panel_title %}{{ title }}{% endblock %}</h2>
                 </div>
                 <div class="panel-body">
                     {% block content %}{% endblock %}

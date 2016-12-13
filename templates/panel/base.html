@@ -26,8 +26,8 @@
     </head>
     <body>
         <div class="container" id="container">
-            <div class="header" id="header">
-                <div id="header-text">控制面板</div>
+            <div class="header bg-primary" id="header">
+                <h1 class="page-header" id="header-text">控制面板</h1>
                 {% include 'panel/snippet_logined_header.html'%}
                 {% block header %}{% endblock %}
             </div>
@@ -35,7 +35,7 @@
                 <h3>{% block content_title %}{% endblock %}</h3>
                 {% block content %}{% endblock %}
             </div>
-            <div class="footer" id="footer">
+            <div class="footer bg-info" id="footer">
                 {% block footer %}{% endblock %}
                 <div class="text-info">
                     {% include 'panel/snippet_logined_footer.html'%}

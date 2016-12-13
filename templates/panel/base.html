@@ -25,11 +25,8 @@
         {% block extrahead %}{% endblock %}
     </head>
     <body>
-        <div class="header" id="header">
-            {% include 'panel/snippet_logined_header.html'%}
-            {% block header %}{% endblock %}
-        </div>
-        <div class="content container" id="content">
+        {% include 'panel/snippet_nav.html'%}
+        <div class="container" id="content">
             <div class="page-header">
                 <h1>{% block content_title %}{% endblock %}</h1>
             </div>

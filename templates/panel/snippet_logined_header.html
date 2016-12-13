@@ -11,16 +11,20 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'panel:index' %}">首页</a></li>
+                <li><a href="{% url 'panel:index' %}">首页</a></li>
                 {% if user.is_authenticated %}
                     {% if user.is_superuser %}
-                        <li><a href="{% url 'panel:users' %}">用户</a></li>
+                        <li><a href="{% url 'panel:users' %}"><span class="text-primary">用户</span></a></li>
                         <li><a href="{% url 'panel:status' %}">系统</a></li>
                         <li><a href="{% url 'panel:gold' %}">资金</a></li>
                         <li><a href="{% url 'admin:index' %}">后台</a></li>
                     {% endif %}
-                    <li><a href="{% url 'auth:password_change' %}">修改密码</a></li>
-                    <li><a href="{% url 'panel:logout' %}">退出</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'auth:password_change' %}"><span class="text-danger">修改密码</span></a></li>
+                    <li><a href="{% url 'panel:logout' %}"><span class="text-danger">退出</span></a></li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->

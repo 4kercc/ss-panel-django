@@ -1,33 +1,52 @@
 {% extends "panel/base.html" %}
 
+{% block title %}控制面板{% endblock %}
+
+{% block content_title %}{{ 控制面板 }}{% endblock %}
+
+{% block panel_title %}{{ 控制面板 }}{% endblock %}
+
 {% block content %}
 
 {% if form.errors %}
-<p>用户名和密码不匹配, 请重试.</p>
+<p class="text-danger">用户名和密码不匹配, 请重试.</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>您没有访问此页面的权限, 请更换有权限的用户进行登录.</p>
+    <p class="text-warning">您没有访问此页面的权限, 请更换有权限的用户进行登录.</p>
     {% else %}
-    <p>登录后才允许查看此页面.</p>
+    <p class="text-warning">登录后才允许查看此页面.</p>
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'auth:login' %}" role="form">
+<form class="form-signin" method="post" action="{% url 'auth:login' %}" role="form">
     {% csrf_token %}
-    <div class="form-group">
-        {{ form.username.label_tag }}
-        {{ form.username }}
-    </div>
-    <div class="form-group">
-        {{ form.password.label_tag }}
-        {{ form.password }}
-    </div>
-    <input type="submit" class="btn btn-primary" />
+    <h2 class="form-signin-heading">请登录</h2>
+    {{ form.username.label_tag }}
+    {{ form.username }}
+    {{ form.password.label_tag }}
+    {{ form.password }}
     <input type="hidden" name="next" value="{{ next }}" />
+    <button class="btn btn-primary" type="submit">登录</button>
 </form>
 
 <p><a href="{% url 'auth:password_reset' %}">忘记密码?</a></p>
+
+<script>
+$(document).ready(function(){
+    $("#id_username").addClass("form-control");
+    $("#id_username").attr({
+        "placeholder": "用户名",
+        "required": "required",
+        "autofocus": "autofocus"
+    });
+    $("#id_password").addClass("form-control");
+    $("#id_password").attr({
+        "placeholder": "密码",
+        "required": "required"
+    });
+});
+</script>
 
 {% endblock %}

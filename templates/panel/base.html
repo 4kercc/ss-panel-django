@@ -30,6 +30,9 @@
             <div class="page-header">
                 <h1>{% block content_title %}{{ title }}{% endblock %}</h1>
             </div>
+            <div class="header" id="header">
+                {% block header %}{% endblock %}
+            </div>
             <div class="panel panel-default" id="panel">
                 <div class="panel-heading">
                     <h2 class="panel-title">{% block panel_title %}{{ title }}{% endblock %}</h2>

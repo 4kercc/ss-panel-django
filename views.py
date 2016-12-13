@@ -54,7 +54,7 @@ def index(request):
 @login_required
 @superuser_required
 def status(request):
-    """统计服务器状态."""
+    """统计服务器当前各端口流量."""
     flow = ping()
     flows_srt = {}
 
@@ -68,6 +68,7 @@ def status(request):
 
     c = {
         'title': '服务器状态',
+        'panel_title': '当前流量',
         'flow': flows_srt,
     }
     return render(request, 'panel/status.html', c)

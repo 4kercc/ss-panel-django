@@ -25,32 +25,28 @@
         {% block extrahead %}{% endblock %}
     </head>
     <body>
-        <div class="container" id="container">
-            <div class="header" id="header">
-                {% include 'panel/snippet_logined_header.html'%}
-                {% block header %}{% endblock %}
-            </div>
-            <div class="content" id="content">
-                <div class="panel panel-default" id="panel">
-                    <div class="panel-heading">
-                        <h2 class="panel-title">{% block content_title %}{% endblock %}</h2>
-                    </div>
-                    <div class="panel-body">
-                        {% block content %}{% endblock %}
-                    </div>
+        <div class="header" id="header">
+            {% include 'panel/snippet_logined_header.html'%}
+            {% block header %}{% endblock %}
+        </div>
+        <div class="content" id="content">
+            <div class="panel panel-default" id="panel">
+                <div class="panel-heading">
+                    <h2 class="panel-title">{% block content_title %}{% endblock %}</h2>
+                </div>
+                <div class="panel-body">
+                    {% block content %}{% endblock %}
                 </div>
             </div>
-            <div class="footer" id="footer">
-                <footer class="footer">
-                    <div class="container text-info bg-info">
-                        <div class="">
-                            {% block footer %}{% endblock %}
-                            {% include 'panel/snippet_logined_footer.html'%}
-                            <p>Copyright &copy; 2016 GreyPort Team.</p>
-                        </div>
-                    </div>
-                </footer>
-            </div>
         </div>
+        <footer class="footer" id="footer">
+            <div class="container text-info bg-info">
+                <div class="">
+                    {% block footer %}{% endblock %}
+                    {% include 'panel/snippet_logined_footer.html'%}
+                    <p>Copyright &copy; 2016 GreyPort Team.</p>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>

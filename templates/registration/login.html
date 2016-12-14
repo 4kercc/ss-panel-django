@@ -7,7 +7,6 @@
 {% block panel_title %}控制面板{% endblock %}
 
 {% block content %}
-
 {% if form.errors %}
 <p class="text-danger">用户名和密码不匹配, 请重试.</p>
 {% endif %}
@@ -35,7 +34,9 @@
 </form>
 
 <p><a href="{% url 'auth:password_reset' %}">忘记密码?</a></p>
+{% endblock %}
 
+{% block script %}
 <script>
 $(document).ready(function(){
     $("#id_username").addClass("form-control");
@@ -51,5 +52,4 @@ $(document).ready(function(){
     });
 });
 </script>
-
 {% endblock %}

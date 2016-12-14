@@ -7,7 +7,9 @@
 <p>服务起始日期: {{ panel.setup_date }}</p>
 <p>服务终止日期: {{ panel.end_date }}</p>
 <p>备注: {{ panel.memo }}</p>
+{% endblock %}
 
+{% block script %}
 <script>
 $(document).ready(function(){
     $("#nav-index").addClass("active");

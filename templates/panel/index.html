@@ -1,9 +1,12 @@
 {% extends 'panel/base.html' %}
 
 {% block content %}
-<p>尊敬的 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>, 感谢您使用本服务.</p>
-<p>您的服务起始日期是{{ panel.setup_date }}, 服务终止时间是<span class="text-warning">{{ panel.end_date }}</span>.</p>
-<p>您现在的使用权是<span class="text-info">{% if panel.status %}正常{% else %}关闭{% endif %}</span>的.</p>
+<h4>尊敬的 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>:</h4>
+<p>感谢您使用本服务.</p>
+<p>
+    您的服务起始日期是{{ panel.setup_date }}, 服务终止时间是<span class="text-warning">{{ panel.end_date }}</span>.
+    您现在的使用权是{% if panel.status %}<span class="text-info">正常</span>{% else %}<span class="text-danger">关闭</span>{% endif %}的.
+</p>
 <p>其他信息: {{ panel.memo }}</p>
 
 <h4>您的配置信息</h4>

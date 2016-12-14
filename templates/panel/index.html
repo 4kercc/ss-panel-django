@@ -1,12 +1,19 @@
 {% extends 'panel/base.html' %}
 
 {% block content %}
-<p>欢迎 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>.</p>
-<p>您的服务端口: {{ panel.port }}, 服务密码: {{ panel.password }}</p>
-<p>状态: {{ panel.status }}</p>
-<p>服务起始日期: {{ panel.setup_date }}</p>
-<p>服务终止日期: {{ panel.end_date }}</p>
-<p>备注: {{ panel.memo }}</p>
+<p>尊敬的 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>, 感谢您使用本服务.</p>
+<p>您的服务起始日期是{{ panel.setup_date }}, 服务终止时间是<span class="text-warning">{{ panel.end_date }}</span>.</p>
+<p>您现在的使用权是<span class="text-info">{% if panel.status %}正常{% else %}关闭{% endif %}</span>的.</p>
+<p>其他信息: {{ panel.memo }}</p>
+
+<h4>您的配置信息</h4>
+<ul class="list-group">
+    <li class="list-group-item">服务器地址 <code>jp.greyport.win</code></li>
+    <li class="list-group-item">服务器端口 <code>{{ panel.port }}</code></li>
+    <li class="list-group-item">密码 <code>{{ panel.password }}</code></li>
+    <li class="list-group-item">加密 <code>aes-256-cfb</code></li>
+    <li class="list-group-item">一次性认证 <span class="text-warning">勾选</span></li>
+</ul>
 {% endblock %}
 
 {% block script %}

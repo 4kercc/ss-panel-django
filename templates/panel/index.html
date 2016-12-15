@@ -1,22 +1,29 @@
 {% extends 'panel/base.html' %}
 
 {% block content %}
-<h4>尊敬的 <span title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</span>:</h4>
-<p>感谢您使用本服务.</p>
-<p>
-    您的服务起始日期是{{ panel.setup_date }}, 服务终止时间是<span class="text-warning">{{ panel.end_date }}</span>.
-    您现在的使用权是{% if panel.status %}<span class="text-info">正常</span>{% else %}<span class="text-danger">关闭</span>{% endif %}的.
-</p>
-<p>其他信息: {{ panel.memo }}</p>
+<h4>尊敬的 <abbr title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</abbr>:</h4>
+<blockquote>
+    <p>感谢您使用本服务.</p>
+    <p>
+        您的服务起始日期是{{ panel.setup_date }}, 服务终止时间是<span class="text-warning">{{ panel.end_date }}</span>.
+        您现在的使用权是{% if panel.status %}<span class="text-info">正常</span>{% else %}<span class="text-danger">关闭</span>{% endif %}的.
+    </p>
+    <footer>其他信息: {{ panel.memo }}</footer>
+</blockquote>
 
 <h4>您的 Shadowsocks 配置信息</h4>
-<ul class="list-group">
-    <li class="list-group-item">服务器地址 <code>jp.greyport.win</code></li>
-    <li class="list-group-item">服务器端口 <code>{{ panel.port }}</code></li>
-    <li class="list-group-item">密码 <code>{{ panel.password }}</code></li>
-    <li class="list-group-item">加密 <code>aes-256-cfb</code></li>
-    <li class="list-group-item">一次性认证 <span class="text-warning">勾选</span></li>
-</ul>
+<dl class="dl-horizontal">
+    <dt>服务器地址</dt>
+    <dd><code>jp.greyport.win</code></dd>
+    <dt>服务器端口</dt>
+    <dd><code>{{ panel.port }}</code></dd>
+    <dt>密码</dt>
+    <dd><code>{{ panel.password }}</code></dd>
+    <dt>加密</dt>
+    <dd><code>aes-256-cfb</code></dd>
+    <dt>一次性认证</dt>
+    <dd><span class="text-warning">勾选</span></dd>
+</dl>
 {% endblock %}
 
 {% block script %}

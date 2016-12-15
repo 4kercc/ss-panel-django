@@ -14,17 +14,17 @@
         <td title="在线? {{ user.online }}">{{ user.port }}</td>
         <td class="text-right">{{ user.flow }}</td>
         <td>
-            <form method="post" action="{% url 'panel:ss-op-admin' %}" role="form" id="ss-op-admin">
+            <form method="post" action="{% url 'panel:ss-op-admin' %}" role="form" class="ss-op-admin" id="{{ user.id }}">
                 {% csrf_token %}
                 <div class="btn-group btn-group-sm" role="group">
                 {% if user.online %}
-                    <button type="submit" class="btn btn-danger" id="ss-op-admin-op-close-port"><span class="glyphicon glyphicon-remove" aria-hidden="true" title="关闭"></span></button>
-                    <button type="button" class="btn btn-default" id="ss-op-admin-op-reopen-port"><span class="glyphicon glyphicon-refresh" aria-hidden="true" title="重启"></span></button>
+                    <button type="submit" class="btn btn-danger ss-op-admin-op-close-port" id="{{ user.id }}"><span class="glyphicon glyphicon-remove" aria-hidden="true" title="关闭"></span></button>
+                    <button type="button" class="btn btn-default ss-op-admin-op-reopen-port" id="{{ user.id }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" title="重启"></span></button>
                 {% else %}
-                    <button type="submit" class="btn btn-primary" id="ss-op-admin-op-open-port"><span class="glyphicon glyphicon-ok" aria-hidden="true" title="打开"></span></button>
+                    <button type="submit" class="btn btn-primary ss-op-admin-op-open-port" id="{{ user.id }}"><span class="glyphicon glyphicon-ok" aria-hidden="true" title="打开"></span></button>
                 {% endif %}
                 </div>
-                <input type="hidden" name="op" value="null_op" id="ss-op-admin-op" />
+                <input type="hidden" name="op" value="null_op" class="ss-op-admin-op"  id="{{ user.id }}" />
                 <input type="hidden" name="username" value="{{ user.user.username }}" />
             </form>
         </td>
@@ -37,17 +37,20 @@
 <script>
 $(document).ready(function(){
     $("#nav-users").addClass("active");
-    $("#ss-op-admin-op-close-port").click(function(){
-        $("#ss-op-admin-op").val("close_port");
-        $("#ss-op-admin").submit();
+    $("button.ss-op-admin-op-close-port").click(function(){
+        var op_id = $(this).attr("id");
+        $("button.ss-op-admin-op#" + op_id).val("close_port");
+        $("form.ss-op-admin#" + op_id).submit();
     });
-    $("#ss-op-admin-op-reopen-port").click(function(){
-        $("#ss-op-admin-op").val("reopen_port");
-        $("#ss-op-admin").submit();
+    $("button.ss-op-admin-op-reopen-port").click(function(){
+        var op_id = $(this).attr("id");
+        $("button.ss-op-admin-op#" + op_id).val("reopen_port");
+        $("form.ss-op-admin#" + op_id).submit();
     });
-    $("#ss-op-admin-op-open-port").click(function(){
-        $("#ss-op-admin-op").val("open_port");
-        $("#ss-op-admin").submit();
+    $("button.ss-op-admin-op-open-port").click(function(){
+        var op_id = $(this).attr("id");
+        $("button.ss-op-admin-op#" + op_id).val("open_port");
+        $("form.ss-op-admin#" + op_id).submit();
     });
 });
 </script>

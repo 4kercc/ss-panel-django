@@ -14,18 +14,13 @@
 </div>
 
 <h4>您的 Shadowsocks 配置信息</h4>
-<dl class="dl-horizontal">
-    <dt>服务器地址</dt>
-    <dd><code>jp.greyport.win</code></dd>
-    <dt>服务器端口</dt>
-    <dd><code>{{ panel.port }}</code></dd>
-    <dt>密码</dt>
-    <dd><code>{{ panel.password }}</code></dd>
-    <dt>加密</dt>
-    <dd><code>aes-256-cfb</code></dd>
-    <dt>一次性认证</dt>
-    <dd><span class="text-warning">勾选</span></dd>
-</dl>
+<ul class="list-group">
+    <li class="list-group-item">服务器地址 <code>jp.greyport.win</code></li>
+    <li class="list-group-item">服务器端口 <code>{{ panel.port }}</code></li>
+    <li class="list-group-item">密码 <code>{{ panel.password }}</code></li>
+    <li class="list-group-item">加密 <code>aes-256-cfb</code></li>
+    <li class="list-group-item">一次性认证 <span class="text-warning">勾选</span></li>
+</ul>
 {% endblock %}
 
 {% block script %}

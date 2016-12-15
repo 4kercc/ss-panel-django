@@ -2,14 +2,16 @@
 
 {% block content %}
 <h4>尊敬的 <abbr title="{{ user.last_name }}{{ user.first_name }}">{{ user.username }}</abbr>:</h4>
-<blockquote>
-    <p>感谢您使用本服务.</p>
-    <p>
-        您的服务起始日期是{{ panel.setup_date }}, 服务终止时间是<span class="text-warning">{{ panel.end_date }}</span>.
-        您现在的使用权是{% if panel.status %}<span class="text-info">正常</span>{% else %}<span class="text-danger">关闭</span>{% endif %}的.
-    </p>
-    <footer>其他信息: {{ panel.memo }}</footer>
-</blockquote>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p>感谢您使用本服务.</p>
+        <p>
+            您的服务起始日期是{{ panel.setup_date }}, 服务终止时间是<span class="text-warning">{{ panel.end_date }}</span>.
+            您现在的使用权是{% if panel.status %}<span class="text-info">正常</span>{% else %}<span class="text-danger">关闭</span>{% endif %}的.
+        </p>
+    </div>
+    <div class="panel-footer">{{ panel.memo }}</div>
+</div>
 
 <h4>您的 Shadowsocks 配置信息</h4>
 <dl class="dl-horizontal">

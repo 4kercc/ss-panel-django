@@ -6,7 +6,7 @@
 <div class="list-group">
     {% for gold in gold_list %}
     <a class="list-group-item list-group-item-info" href="#gold-{{ method }}-{{ gold.id }}">
-        <h4>{{ gold.date }}</h4>
+        <h4 id="gold-{{ method }}-{{ gold.id }}">{{ gold.date }}</h4>
         <p>
             {% if method == "in" %}{{ gold.user }}
             {% elif method == "out" %}{{ gold.log }}

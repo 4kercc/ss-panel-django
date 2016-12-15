@@ -38,15 +38,15 @@
 $(document).ready(function(){
     $("#nav-users").addClass("active");
     $("#ss-op-admin-op-close-port").click(function(){
-        $("#ss-op-admin-op").attr("value", "close_port");
+        $("#ss-op-admin-op").val("close_port");
         $("#ss-op-admin").submit();
     });
     $("#ss-op-admin-op-reopen-port").click(function(){
-        $("#ss-op-admin-op").attr("value", "reopen_port");
+        $("#ss-op-admin-op").val("reopen_port");
         $("#ss-op-admin").submit();
     });
     $("#ss-op-admin-op-open-port").click(function(){
-        $("#ss-op-admin-op").attr("value", "open_port");
+        $("#ss-op-admin-op").val("open_port");
         $("#ss-op-admin").submit();
     });
 });

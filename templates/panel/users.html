@@ -10,7 +10,7 @@
     </tr>
     {% for user in users %}
     <tr>
-        <td id="user-{{ user.id }}" title="{{ user.memo }}">{{ user.user.username }} <span class="glyphicon glyphicon-{% if user.status %}ok{% else %}remove{% endif %}" aria-hidden="true"></span></td>
+        <td id="user-{{ user.id }}" title="{{ user.memo }}" class="{% if user.status %}text-primary{% else %}text-danger{% endif %}">{{ user.user.username }}</td>
         <td title="在线? {{ user.online }}">{{ user.port }}</td>
         <td class="text-right">{{ user.flow }}</td>
         <td>

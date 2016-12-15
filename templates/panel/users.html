@@ -7,8 +7,6 @@
         <th>端口</th>
         <th>当前流量</th>
         <th>端口操作</th>
-        <th>建立日期</th>
-        <th>结束日期</th>
     </tr>
     {% for user in users %}
     <tr>
@@ -38,8 +36,6 @@
             </form>
         {% endif %}
         </td>
-        <td>{{ user.setup_date }}</td>
-        <td>{{ user.end_date }}</td>
     </tr>
     {% endfor %}
 </table>

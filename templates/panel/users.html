@@ -20,10 +20,10 @@
         <tr class="{% if not user.status %}danger{% endif %}">
             <td class="text-center hidden-xs hidden-sm">{{ user.id }}</td>
             <td class="text-center" id="user-{{ user.id }}" title="{{ user.memo }}">{{ user.user.username }}</td>
-            <td class="text-center hidden-xs hidden-sm">{{ user.status }}</td>
+            <td class="text-center hidden-xs hidden-sm"><span class="glyphicon glyphicon-{% if user.status %}ok{% else %}remove{% endif %}" aria-hidden="true"></span></td>
             <td class="text-center" title="在线? {{ user.online }}">{{ user.port }}</td>
             <td class="text-center hidden-xs hidden-sm">{{ user.password }}</td>
-            <td class="text-center hidden-xs hidden-sm">{{ user.online }}</td>
+            <td class="text-center hidden-xs hidden-sm"><span class="glyphicon glyphicon-{% if user.online %}ok{% else %}remove{% endif %}" aria-hidden="true"></span></td>
             <td class="text-right">{{ user.flow }}</td>
             <td class="text-center">
                 <form method="post" action="{% url 'panel:ss-op-admin' %}" role="form" id="ss-op-admin-{{ user.id }}">

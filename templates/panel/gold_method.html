@@ -1,21 +1,29 @@
 {% extends 'panel/base.html' %}
 
-{% block content %}
+{% block content_full %}
 <p class="text-primary">合计: {{ gold_sum }}元</p>
 
-<div class="list-group">
-    {% for gold in gold_list %}
-    <a class="list-group-item list-group-item-info" href="#gold-{{ method }}-{{ gold.id }}">
-        <h4 id="gold-{{ method }}-{{ gold.id }}">{{ gold.date }}</h4>
-        <p>
-            {% if method == "in" %}{{ gold.user }}
-            {% elif method == "out" %}{{ gold.log }}
-            {% else %}未定义{% endif %}
-            {{ gold.num }} 元.
-        </p>
-        <p>{{ gold.memo }}</p>
-    </a>
-    {% endfor %}
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+            <th class="text-center">日期</th>
+            <th class="text-center">信息</th>
+            <th class="text-center">金额</th>
+            <th class="text-center">备注</th>
+        </tr>
+        {% for gold in gold_list %}
+        <tr>
+            <td class="text-center" title="{{ gold.id }}">{{ gold.date }}</td>
+            <td class="text-center">
+                {% if method == "in" %}{{ gold.user }}
+                {% elif method == "out" %}{{ gold.log }}
+                {% else %}未定义{% endif %}
+            </td>
+            <td class="text-right">{{ gold.num }} 元</td>
+            <td class="text-center">{{ gold.memo }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}
 

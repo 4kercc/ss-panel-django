@@ -30,6 +30,7 @@
             <div class="header" id="header">
                 {% block header %}{% endblock %}
             </div>
+            {% block content-full %}
             <div class="panel panel-default" id="panel">
                 <div class="panel-heading">
                     <h2 class="panel-title">{% block panel_title %}{{ title }}{% endblock %}</h2>
@@ -38,6 +39,7 @@
                     {% block content %}{% endblock %}
                 </div>
             </div>
+            {% endblock %}
         </div>
         <footer class="footer" id="footer">
             <div class="container text-muted">

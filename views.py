@@ -203,7 +203,7 @@ def ss_op_admin(request):
         'title': '操作结果',
         'info': '对 %s 的 %s 操作, 执行结果: %s.' % (username, op_str, r_str),
         'link_url': 'panel:users',
-        'link_text': '查看用户列表',
+        'link_text': '返回用户列表',
     }
     return render(request, 'panel/info.html', c)
 

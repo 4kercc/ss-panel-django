@@ -43,7 +43,10 @@ def quit(request):
 
 @require_safe
 def password_change_panel(request):
-    return password_change(request, post_change_redirect='panel:password_change_done')
+    return password_change(request,
+        template_name='panel/password_change_form.html',
+        post_change_redirect='panel:password_change_done'
+    )
 
 
 @require_safe

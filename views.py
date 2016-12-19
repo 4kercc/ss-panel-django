@@ -41,7 +41,6 @@ def quit(request):
     return render(request, 'panel/info.html', c)
 
 
-@require_safe
 def password_change_panel(request):
     return password_change(request,
         template_name='panel/password_change_form.html',
@@ -49,7 +48,6 @@ def password_change_panel(request):
     )
 
 
-@require_safe
 def password_change_done(request):
     c = {
         'title': '修改密码',

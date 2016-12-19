@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^ss-op/$', views.ss_op, name='ss-op'),
 
     url(r'^logout/$', views.quit, name='logout'),
+    url(r'^password_change/$', views.password_change_panel, name='password_change'),
+    url(r'^password_change/done/$', views.password_change_done, name='password_change_done'),
 
     url(r'^users/$', views.users, name='users'),
     url(r'^status/$', views.status, name='status'),

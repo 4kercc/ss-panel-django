@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 from django.shortcuts import render, redirect
 from django.db.models import Sum
-from django.contrib.auth.views import logout
+from django.contrib.auth.views import logout, password_change
 from django.contrib.auth.models import User as UserAuth
 
 from django.views.decorators.http import require_safe, require_POST
@@ -37,6 +37,22 @@ def quit(request):
         'info': '感谢您的使用, 再见.',
         'link_url': 'panel:index',
         'link_text': '重新登录',
+    }
+    return render(request, 'panel/info.html', c)
+
+
+@require_safe
+def password_change_panel(request):
+    return password_change(request, post_change_redirect='panel:password_change_done')
+
+
+@require_safe
+def password_change_done(request):
+    c = {
+        'title': '修改密码',
+        'info': '您的密码已修改成功.',
+        'link_url': 'panel:index',
+        'link_text': '返回首页',
     }
     return render(request, 'panel/info.html', c)
 

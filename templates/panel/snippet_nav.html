@@ -30,7 +30,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li id="nav-password-change"><a href="{% url 'auth:password_change' %}"><span class="text-danger">修改密码</span></a></li>
+                    <li id="nav-password-change"><a href="{% url 'panel:password_change' %}"><span class="text-danger">修改密码</span></a></li>
                     <li id="nav-logout"><a href="{% url 'panel:logout' %}"><span class="text-danger">退出</span></a></li>
                 {% endif %}
             </ul>

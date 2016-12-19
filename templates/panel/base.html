@@ -25,7 +25,7 @@
         {% include 'panel/snippet_nav.html'%}
         <div class="container" id="content">
             <div class="page-header">
-                <h1>{% block content_title %}{{ title }}{% endblock %}</h1>
+                <h3>{% block content_title %}{{ title }}{% endblock %}</h3>
             </div>
             <div class="header" id="header">
                 {% block header %}{% endblock %}
@@ -33,7 +33,7 @@
             {% block content_full %}
             <div class="panel panel-default" id="panel">
                 <div class="panel-heading">
-                    <h2 class="panel-title">{% block panel_title %}{{ title }}{% endblock %}</h2>
+                    <h4 class="panel-title">{% block panel_title %}{{ title }}{% endblock %}</h4>
                 </div>
                 <div class="panel-body">
                     {% block content %}{% endblock %}

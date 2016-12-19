@@ -109,7 +109,6 @@ def users(request):
     c = {
         'title': '用户列表',
         'users': user_status,
-        'user_list': user_list,
     }
     return render(request, 'panel/users.html', c)
 

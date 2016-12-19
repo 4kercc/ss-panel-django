@@ -1,4 +1,4 @@
-import collections
+from collections import OrderedDict
 
 from django.shortcuts import render, redirect
 from django.db.models import Sum
@@ -71,7 +71,7 @@ def status(request):
     c = {
         'title': '服务器状态',
         'panel_title': '当前流量',
-        'flow': collections.OrderedDict(sorted(flows_srt.items())),
+        'flow': OrderedDict(sorted(flows_srt.items())),
     }
     return render(request, 'panel/status.html', c)
 

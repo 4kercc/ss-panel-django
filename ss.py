@@ -4,7 +4,8 @@ import os, socket, random, json, configparser
 
 
 class Config:
-    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    print(BASE_DIR)
 
     config = configparser.ConfigParser()
     config.sections()

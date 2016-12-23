@@ -4,9 +4,11 @@ import os, socket, random, json, configparser
 
 
 class Config:
+    BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
     config = configparser.ConfigParser()
     config.sections()
-    config.read('config.ini')
+    config.read(os.path.join(BASE_DIR, 'config.ini'))
 
     server_ip = config['server']['ip']
     timeout = int(config['server']['timeout'])

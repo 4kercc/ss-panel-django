@@ -8,9 +8,12 @@ from django.contrib.auth.models import User as UserAuth
 from django.views.decorators.http import require_safe, require_POST
 from django.contrib.auth.decorators import login_required
 
-from .ss import ping, open_port, close_port, reopen_port
+from .ss import SS
 from .models import User, Flow, In, Out
 from .decorators import superuser_required
+
+
+s = SS()
 
 
 @require_safe
@@ -74,7 +77,7 @@ def index(request):
 @superuser_required
 def status(request):
     """统计服务器当前各端口流量."""
-    flow = ping()
+    flow = s.ping()
     flows_srt = {}
 
     for k, v in flow.items():
@@ -101,7 +104,7 @@ def users(request):
     users = User.objects.all().values()
 
     # 向 User 列表中增加端口实时状态和当前流量.
-    flow = ping()
+    flow = s.ping()
     user_status = []
     user_list = [item for item in users]
     for u in user_list:
@@ -185,7 +188,7 @@ def ss_op_admin(request):
     port = panel.port
     password = panel.password
     op = request.POST['op']
-    flow = ping()
+    flow = s.ping()
 
     port_opened = str(port) in flow.keys()
 
@@ -196,17 +199,17 @@ def ss_op_admin(request):
         if port_opened:
             r = True
         else:
-            r = open_port(port, password)
+            r = s.open_port(port, password)
     elif op == 'reopen_port':
         op_str = '重启端口'
         if port_opened:
-            r = reopen_port(port, password)
+            r = s.reopen_port(port, password)
         else:
-            r = open_port(port, password)
+            r = s.open_port(port, password)
     elif op == 'close_port':
         op_str = '关闭端口'
         if port_opened:
-            r = close_port(port)
+            r = s.close_port(port)
         else:
             r = True
     else:

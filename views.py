@@ -68,6 +68,7 @@ def index(request):
     c = {
         'title': '首页',
         'panel': panel,
+        's': s,
     }
     return render(request, 'panel/index.html', c)
 

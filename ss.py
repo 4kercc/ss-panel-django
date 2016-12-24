@@ -15,6 +15,7 @@ class Config:
     timeout = int(config['server']['timeout'])
     method = config['server']['method']
     auth = config['server'].getboolean('auth')
+    name = config['server']['name']
 
     manager_ip = config['manager']['ip']
     manager_port = int(config['manager']['port'])

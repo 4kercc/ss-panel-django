@@ -15,15 +15,21 @@
 
 <h4>您的 Shadowsocks 配置信息</h4>
 <ul class="list-group">
-    <li class="list-group-item">服务器地址 <code>{{ s.c.name }}</code></li>
-    <li class="list-group-item">服务器端口 <code>{{ panel.port }}</code></li>
-    <li class="list-group-item">密码 <code>{{ panel.password }}</code></li>
-    <li class="list-group-item">加密 <code>{{ s.c.method }}</code></li>
+    <li class="list-group-item">服务器地址 <code id="index-ss-server">{{ s.c.name }}</code></li>
+    <li class="list-group-item">服务器端口 <code id="index-ss-port">{{ panel.port }}</code></li>
+    <li class="list-group-item">
+        密码 <code id="index-ss-passwd">{{ panel.password }}</code>
+        <button class="btn btn-default btn-xs" type="button" data-clipboard-target="#index-ss-passwd">
+            <span class="glyphicon glyphicon-copy" aria-hidden="true" title="复制到剪切板"></span>
+        </button>
+    </li>
+    <li class="list-group-item">加密 <code id="index-ss-method">{{ s.c.method }}</code></li>
     <li class="list-group-item">一次性认证 <span class="glyphicon glyphicon-{% if s.c.auth %}ok{% else %}remove{% endif %}" aria-hidden="true"></span></li>
 </ul>
 {% endblock %}
 
 {% block script %}
+<script src="{% static 'panel/js/clipboard.min.js' %}"></script>
 <script>
 $(document).ready(function(){
     $("#nav-index").addClass("active");

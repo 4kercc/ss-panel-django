@@ -20,20 +20,20 @@
         <tr class="{% if not user.status %}danger{% endif %}">
             <td class="text-center hidden-xs hidden-sm">{{ user.id }}</td>
             <td class="text-center" id="user-{{ user.id }}" title="{{ user.memo }}">{{ user.user.username }}</td>
-            <td class="text-center hidden-xs hidden-sm"><span class="glyphicon glyphicon-{% if user.status %}ok{% else %}remove{% endif %}" aria-hidden="true"></span></td>
+            <td class="text-center hidden-xs hidden-sm"><i class="fa fa-{% if user.status %}check{% else %}remove{% endif %}" aria-hidden="true"></i></td>
             <td class="text-center" title="在线? {{ user.online }}">{{ user.port }}</td>
             <td class="text-center hidden-xs hidden-sm">{{ user.password }}</td>
-            <td class="text-center hidden-xs hidden-sm"><span class="glyphicon glyphicon-{% if user.online %}ok{% else %}remove{% endif %}" aria-hidden="true"></span></td>
+            <td class="text-center hidden-xs hidden-sm"><i class="fa fa-{% if user.online %}check{% else %}remove{% endif %}" aria-hidden="true"></i></td>
             <td class="text-right">{{ user.flow }}</td>
             <td class="text-center">
                 <form method="post" action="{% url 'panel:ss-op-admin' %}" role="form" id="ss-op-admin-{{ user.id }}">
                     {% csrf_token %}
                     <div class="btn-group btn-group-xs" role="group">
                     {% if user.online %}
-                        <button type="submit" class="btn btn-danger ss-op-admin-op-close-port" title="{{ user.id }}"><span class="glyphicon glyphicon-remove" aria-hidden="true" title="关闭"></span></button>
-                        <button type="button" class="btn btn-default ss-op-admin-op-reopen-port" title="{{ user.id }}"><span class="glyphicon glyphicon-refresh" aria-hidden="true" title="重启"></span></button>
+                        <button type="submit" class="btn btn-danger ss-op-admin-op-close-port" title="{{ user.id }}"><i class="fa fa-remove" aria-hidden="true" title="关闭"></i></button>
+                        <button type="button" class="btn btn-default ss-op-admin-op-reopen-port" title="{{ user.id }}"><i class="fa fa-refresh" aria-hidden="true" title="重启"></i></button>
                     {% else %}
-                        <button type="submit" class="btn btn-primary ss-op-admin-op-open-port" title="{{ user.id }}"><span class="glyphicon glyphicon-ok" aria-hidden="true" title="打开"></span></button>
+                        <button type="submit" class="btn btn-primary ss-op-admin-op-open-port" title="{{ user.id }}"><i class="fa fa-check" aria-hidden="true" title="打开"></i></button>
                     {% endif %}
                     </div>
                     <input type="hidden" name="op" value="null_op" id="ss-op-admin-op-{{ user.id }}" />

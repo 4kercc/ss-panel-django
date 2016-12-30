@@ -25,6 +25,9 @@
             <td class="text-center hidden-xs hidden-sm">{{ user.password }}</td>
             <td class="text-center hidden-xs hidden-sm"><i class="fa fa-{% if user.online %}check{% else %}remove{% endif %}" aria-hidden="true"></i></td>
             <td class="text-right">{{ user.flow }}</td>
+            <td class="text-center hidden-xs">{{ user.setup_date }}</td>
+            <td class="text-center hidden-xs">{{ user.end_date }}</td>
+            <td class="text-center hidden-xs">{{ user.memo }}</td>
             <td class="text-center">
                 <form method="post" action="{% url 'panel:ss-op-admin' %}" role="form" id="ss-op-admin-{{ user.id }}">
                     {% csrf_token %}
@@ -40,9 +43,6 @@
                     <input type="hidden" name="username" value="{{ user.user.username }}" />
                 </form>
             </td>
-            <td class="text-center hidden-xs">{{ user.setup_date }}</td>
-            <td class="text-center hidden-xs">{{ user.end_date }}</td>
-            <td class="text-center hidden-xs">{{ user.memo }}</td>
         </tr>
         {% endfor %}
     </table>

@@ -11,10 +11,10 @@
             <th class="text-center hidden-xs hidden-sm">密码</th>
             <th class="text-center hidden-xs hidden-sm">端口状态</th>
             <th class="text-center">当前流量</th>
-            <th class="text-center">端口操作</th>
             <th class="text-center hidden-xs">建立日期</th>
             <th class="text-center hidden-xs">结束日期</th>
             <th class="text-center hidden-xs">备注</th>
+            <th class="text-center">端口操作</th>
         </tr>
         {% for user in users %}
         <tr class="{% if not user.status %}danger{% endif %}">

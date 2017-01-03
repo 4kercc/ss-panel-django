@@ -42,6 +42,25 @@
     </li>
     <li class="list-group-item">一次性认证 <i class="fa fa-{% if s.c.auth %}check{% else %}remove{% endif %}" aria-hidden="true"></i></li>
 </ul>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <p>
+            <form method="post" action="{% url 'panel:ss-op' %}" role="form" id="ss-op">
+                {% csrf_token %}
+                <div class="btn-group btn-group-xs" role="group">
+                {% if online %}
+                    <button type="submit" class="btn btn-danger" id="ss-op-close-port"><i class="fa fa-remove" aria-hidden="true" title="关闭"></i></button>
+                    <button type="button" class="btn btn-default" id="ss-op-reopen-port"><i class="fa fa-refresh" aria-hidden="true" title="重启"></i></button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary" id="ss-op-open-port"><i class="fa fa-check" aria-hidden="true" title="打开"></i></button>
+                {% endif %}
+                </div>
+                <input type="hidden" name="op" value="null_op" id="ss-op-op" />
+            </form>
+        </p>
+    </div>
+</div>
 {% endblock %}
 
 {% block script %}
@@ -52,6 +71,18 @@ var clipboard = new Clipboard('.btn');
 <script>
 $(document).ready(function(){
     $("#nav-index").addClass("active");
+    $("#ss-op-close-port").click(function(){
+        $("#ss-op-op").val("close_port");
+        $("#ss-op").submit();
+    });
+    $("#ss-op-reopen-port").click(function(){
+        $("#ss-op-op").val("reopen_port");
+        $("#ss-op").submit();
+    });
+    $("#ss-op-open-port").click(function(){
+        $("#ss-op-op").val("open_port");
+        $("#ss-op").submit();
+    });
 });
 </script>
 {% endblock %}

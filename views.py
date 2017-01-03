@@ -16,6 +16,55 @@ from .decorators import superuser_required
 s = SS()
 
 
+def port_test(port):
+    """端口打开测试"""
+    flow = s.ping()
+    return str(port) in flow.keys()
+
+
+def port_op(panel, op):
+    """端口操作"""
+    port = panel.port
+    password = panel.password
+
+    port_is_open = port_test(port)
+
+    r = False
+
+    if op == 'open_port':
+        op_str = '打开端口'
+        if port_is_open:
+            r = True
+        else:
+            r = s.open_port(port, password)
+    elif op == 'reopen_port':
+        op_str = '重启端口'
+        if port_is_open:
+            r = s.reopen_port(port, password)
+        else:
+            r = s.open_port(port, password)
+    elif op == 'close_port':
+        op_str = '关闭端口'
+        if port_is_open:
+            r = s.close_port(port)
+        else:
+            r = True
+    else:
+        op_str = '未知的(%s)' % op
+
+    if r:
+        r_str = '成功'
+    else:
+        r_str = '失败'
+
+    op_dict = {
+        'op_str': op_str,
+        'r_str': r_str,
+    }
+
+    return op_dict
+
+
 @require_safe
 def index_main(request):
     """可以将此页加为主站点的首页.
@@ -69,6 +118,7 @@ def index(request):
         'title': '首页',
         'panel': panel,
         's': s,
+        'online': port_test(panel.port),
     }
     return render(request, 'panel/index.html', c)
 
@@ -186,44 +236,13 @@ def ss_op_admin(request):
     """管理员操作用户的 Shadowsocks 端口."""
     username = request.POST['username']
     panel = UserAuth.objects.get(username=username).user
-    port = panel.port
-    password = panel.password
     op = request.POST['op']
-    flow = s.ping()
 
-    port_opened = str(port) in flow.keys()
-
-    r = False
-
-    if op == 'open_port':
-        op_str = '打开端口'
-        if port_opened:
-            r = True
-        else:
-            r = s.open_port(port, password)
-    elif op == 'reopen_port':
-        op_str = '重启端口'
-        if port_opened:
-            r = s.reopen_port(port, password)
-        else:
-            r = s.open_port(port, password)
-    elif op == 'close_port':
-        op_str = '关闭端口'
-        if port_opened:
-            r = s.close_port(port)
-        else:
-            r = True
-    else:
-        op_str = '未知的(%s)' % op
-
-    if r:
-        r_str = '成功'
-    else:
-        r_str = '失败'
+    r = port_op(panel, op)
 
     c = {
         'title': '操作结果',
-        'info': '对 %s 的 %s 操作, 执行结果: %s.' % (username, op_str, r_str),
+        'info': '对 %s 的 %s 操作, 执行结果: %s.' % (username, r['op_str'], r['r_str']),
         'link_url': 'panel:users',
         'link_text': '返回用户列表',
     }
@@ -234,10 +253,14 @@ def ss_op_admin(request):
 @login_required
 def ss_op(request):
     """用户操作自己的 Shadowsocks 端口."""
+    panel = request.user.user # panel.models.User
+    op = request.POST['op']
+
+    r = port_op(panel, op)
 
     c = {
         'title': '操作结果',
-        'info': '%s 操作, 执行结果: %s.' % (op_str, r_str),
+        'info': '%s 操作, 执行结果: %s.' % (r['op_str'], r['r_str']),
         'link_url': 'panel:index',
         'link_text': '返回首页',
     }

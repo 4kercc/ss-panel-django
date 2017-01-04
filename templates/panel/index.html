@@ -47,7 +47,6 @@
     <div class="panel-heading">当前端口:</div>
     <div class="panel-body">
         <p>端口状态: {{ panel.port }} <i class="fa fa-{% if online %}check{% else %}remove{% endif %}" aria-hidden="true"></i></p>
-        <p>端口操作:</p>
         <form method="post" action="{% url 'panel:ss-op' %}" role="form" id="ss-op">
             {% csrf_token %}
             <div class="btn-group btn-group-xs" role="group">

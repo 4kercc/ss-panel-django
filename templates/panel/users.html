@@ -33,10 +33,10 @@
                     {% csrf_token %}
                     <div class="btn-group btn-group-xs" role="group">
                     {% if user.online %}
-                        <button type="submit" class="btn btn-danger ss-op-admin-op-close-port" title="{{ user.id }}"><i class="fa fa-remove" aria-hidden="true" title="关闭"></i></button>
-                        <button type="button" class="btn btn-default ss-op-admin-op-reopen-port" title="{{ user.id }}"><i class="fa fa-refresh" aria-hidden="true" title="重启"></i></button>
+                        <button type="submit" class="btn btn-danger ss-op-admin-close-port-btn" title="{{ user.id }}"><i class="fa fa-remove" aria-hidden="true" title="关闭"></i></button>
+                        <button type="button" class="btn btn-default ss-op-admin-reopen-port-btn" title="{{ user.id }}"><i class="fa fa-refresh" aria-hidden="true" title="重启"></i></button>
                     {% else %}
-                        <button type="submit" class="btn btn-primary ss-op-admin-op-open-port" title="{{ user.id }}"><i class="fa fa-check" aria-hidden="true" title="打开"></i></button>
+                        <button type="submit" class="btn btn-primary ss-op-admin-open-port-btn" title="{{ user.id }}"><i class="fa fa-check" aria-hidden="true" title="打开"></i></button>
                     {% endif %}
                     </div>
                     <input type="hidden" name="op" value="null_op" id="ss-op-admin-op-{{ user.id }}" />
@@ -53,17 +53,17 @@
 <script>
 $(document).ready(function(){
     $("#nav-users").addClass("active");
-    $("button.ss-op-admin-op-close-port").click(function(){
+    $("button.ss-op-admin-close-port-btn").click(function(){
         var op_id = $(this).attr("title");
         $("#ss-op-admin-op-" + op_id).val("close_port");
         $("#ss-op-admin-" + op_id).submit();
     });
-    $("button.ss-op-admin-op-reopen-port").click(function(){
+    $("button.ss-op-admin-reopen-port-btn").click(function(){
         var op_id = $(this).attr("title");
         $("#ss-op-admin-op-" + op_id).val("reopen_port");
         $("#ss-op-admin-" + op_id).submit();
     });
-    $("button.ss-op-admin-op-open-port").click(function(){
+    $("button.ss-op-admin-open-port-btn").click(function(){
         var op_id = $(this).attr("title");
         $("#ss-op-admin-op-" + op_id).val("open_port");
         $("#ss-op-admin-" + op_id).submit();

@@ -51,7 +51,7 @@
         <p>
             <form method="post" action="{% url 'panel:ss-op' %}" role="form" id="ss-op">
                 {% csrf_token %}
-                <div class="btn-group" role="group">
+                <div class="btn-group btn-group-xs" role="group">
                 {% if online %}
                     <button type="submit" class="btn btn-danger" id="ss-op-close-port"><i class="fa fa-remove" aria-hidden="true" title="关闭"></i></button>
                     <button type="button" class="btn btn-default" id="ss-op-reopen-port"><i class="fa fa-refresh" aria-hidden="true" title="重启"></i></button>

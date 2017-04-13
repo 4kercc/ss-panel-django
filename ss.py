@@ -14,7 +14,6 @@ class Config:
     server_ip = config['server']['ip']
     timeout = int(config['server']['timeout'])
     method = config['server']['method']
-    auth = config['server'].getboolean('auth')
     name = config['server']['name']
 
     manager_ip = config['manager']['ip']
@@ -86,7 +85,7 @@ class SS:
 # 直接运行显示当前服务器流量
 if __name__ == '__main__':
     c = Config()
-    print(c.server_ip, c.timeout, c.method, c.auth, c.manager_ip, c.manager_port)
+    print(c.server_ip, c.timeout, c.method, c.manager_ip, c.manager_port)
     s = SS()
     print(s.socket_server)
     print(s.ping())
